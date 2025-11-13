@@ -1,0 +1,1280 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovelAndNotebookHub - Premium Lifestyle Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&amp;family=Lora:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      background: #FAFAFA;
+      color: #2C3E50;
+      overflow-x: hidden;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(250, 250, 250, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1.2rem 5%;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #D35400;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      color: #2C3E50;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover {
+      color: #D35400;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 85%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-top: 70px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #D35400 0%, #556B2F 100%);
+      opacity: 0.9;
+    }
+
+    .hero-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+      padding: 2rem;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-emoji {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #FAFAFA;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      color: #F5DEB3;
+      margin-bottom: 2rem;
+    }
+
+    /* Page Container */
+    .page {
+      display: none;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* Blog Section */
+    .blog-section {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 5%;
+    }
+
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #D35400;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .trend-card {
+      background: white;
+      border-radius: 20px;
+      padding: 3rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .trend-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 50px rgba(211, 84, 0, 0.15);
+    }
+
+    .trend-number {
+      display: inline-block;
+      background: linear-gradient(135deg, #D35400, #556B2F);
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+
+    .trend-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      color: #2C3E50;
+      margin-bottom: 1rem;
+    }
+
+    .trend-card p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #556B2F;
+    }
+
+    /* Products Grid */
+    .products-grid {
+      max-width: 1400px;
+      margin: 4rem auto;
+      padding: 0 5%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .product-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(211, 84, 0, 0.2);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 250px;
+      background: linear-gradient(135deg, #F5DEB3, #D35400);
+      border-radius: 15px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .product-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      color: #2C3E50;
+      margin-bottom: 0.8rem;
+    }
+
+    .product-price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #D35400;
+      margin-bottom: 1rem;
+    }
+
+    .product-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #D35400, #556B2F);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .product-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 20px rgba(211, 84, 0, 0.4);
+    }
+
+    /* Sliding Window Gallery */
+    .sliding-gallery {
+      max-width: 1400px;
+      margin: 6rem auto 4rem;
+      padding: 0 5%;
+    }
+
+    .gallery-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #D35400;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .windows-container {
+      display: flex;
+      gap: 1rem;
+      height: 500px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(245, 222, 179, 0.2);
+      padding: 1rem;
+    }
+
+    .window {
+      flex: 1;
+      background-size: cover;
+      background-position: center;
+      border-radius: 15px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      text-decoration: none;
+      display: block;
+    }
+
+    .window::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 100%);
+      transition: opacity 0.6s ease;
+    }
+
+    .window:hover::before,
+    .window.active::before {
+      opacity: 0.3;
+    }
+
+    .window:hover,
+    .window.active {
+      flex: 2.5;
+      box-shadow: 0 15px 50px rgba(211, 84, 0, 0.3);
+    }
+
+    .window:not(:hover):not(.active) {
+      flex: 0.8;
+    }
+
+    .window-content {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      right: 2rem;
+      color: white;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .window:hover .window-content,
+    .window.active .window-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .window-content h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .window-content p {
+      font-size: 1rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(44, 62, 80, 0.95);
+      backdrop-filter: blur(10px);
+      color: #F5DEB3;
+      padding: 4rem 5%;
+      margin-top: 6rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #D35400;
+      margin-bottom: 1rem;
+    }
+
+    .footer-tagline {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .footer-mission {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    /* Glassmorphic Footer Buttons */
+    .footer-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2.5rem 0;
+    }
+
+    .glass-btn {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #F5DEB3;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .glass-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(211, 84, 0, 0.5);
+      box-shadow: 0 0 20px rgba(211, 84, 0, 0.4);
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 25px;
+      padding: 3rem;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80%;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      position: relative;
+      animation: slideUp 0.4s ease;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(211, 84, 0, 0.1);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #D35400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      background: rgba(211, 84, 0, 0.2);
+      transform: rotate(90deg);
+    }
+
+    .modal-content h2 {
+      font-family: 'Montserrat', sans-serif;
+      color: #D35400;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+
+    .modal-content p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #2C3E50;
+      margin-bottom: 1rem;
+    }
+
+    .modal-content a {
+      color: #D35400;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .modal-content a:hover {
+      text-decoration: underline;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .social-links a {
+      color: #F5DEB3;
+      font-size: 2rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      color: #D35400;
+      transform: translateY(-5px) scale(1.2);
+    }
+
+    .footer-copyright {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(245, 222, 179, 0.3);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .windows-container {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .window {
+        height: 200px;
+        flex: none !important;
+      }
+
+      .window:hover,
+      .window.active {
+        height: 350px;
+      }
+
+      .trend-card {
+        padding: 2rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .footer-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .glass-btn {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .modal-content {
+        padding: 2rem;
+        width: 95%;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body><!-- Navigation -->
+  <nav>
+   <div class="nav-container"><a href="#" class="logo" id="nav-logo">NovelAndNotebookHub</a>
+    <ul class="nav-links">
+     <li><a id="nav-home">Home</a></li>
+     <li><a id="nav-products">Affiliate Picks</a></li>
+    </ul>
+   </div>
+  </nav><!-- Home Page -->
+  <div id="home-page" class="page active"><!-- Hero Section -->
+   <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://copilot.microsoft.com/th/id/BCO.0cfbc59b-8916-4760-95de-f94d0b264a98.png') center/cover no-repeat; opacity: 0.2;"></div>
+    <div class="hero-content">
+     <div class="hero-emoji">
+      🍂
+     </div>
+     <h1 id="hero-title">Top 10 Fall Fashion Trends 2025–2026 Every Woman of Style Needs to Know</h1>
+     <p id="hero-subtitle">Curated with elegance for the modern woman</p>
+    </div>
+   </section><!-- Blog Section -->
+   <section class="blog-section">
+    <h2 class="section-title">Fall Fashion Trends 2025–2026</h2><!-- Introduction -->
+    <div class="trend-card" style="background: linear-gradient(135deg, rgba(245, 222, 179, 0.3), rgba(255, 255, 255, 0.9)); border-left: 5px solid #D35400;"><span class="trend-number">🌾 Introduction</span>
+     <h3>The Art of Autumn Elegance</h3>
+     <p>As the air turns crisp and the scent of cinnamon begins to linger, fall becomes more than a season — it becomes an experience. A visual symphony of rich fabrics, fluid silhouettes, and whispered elegance. Fall 2025–2026 invites women to redefine sophistication through texture, tone, and timeless confidence.</p>
+     <p style="margin-top: 1rem;">This season's fashion narrative is all about intentional luxury — pieces that move gracefully, materials that tell stories, and outfits that embody quiet confidence. It's not about excess; it's about elevation.</p>
+     <p style="margin-top: 1rem; font-style: italic; color: #D35400;">So, step into the golden season where fashion feels like poetry, and style becomes a reflection of the self.</p>
+    </div>
+    <div class="trend-card"><span class="trend-number">Trend #1</span>
+     <h3>The Return of the Tailored Power Coat 🧥</h3>
+     <p>Few things capture the spirit of fall quite like the perfect coat — and this season, tailoring is back in full force. Gone are the days of shapeless outerwear. Fall 2025–2026 celebrates sculpted coats that define the female silhouette — think structured shoulders, belted waists, and rich, heavyweight wool that feels both commanding and graceful.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">✨ The New Silhouette:</strong></p>
+     <p>Designers are embracing a hybrid between masculine cuts and feminine finishes. Expect mid-length coats with sharp lapels, double-breasted closures, and waist-cinching belts that flatter without overwhelming. The power coat this year doesn't scream luxury; it whispers it.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🎨 Color Palette:</strong></p>
+     <p>Cinnamon browns, oat beige, soft espresso, and classic charcoal dominate the scene. These earthy tones blend effortlessly into the autumn landscape, offering an aura of understated prestige.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">💡 Style Insight:</strong></p>
+     <p>Pair your tailored coat with wide-leg trousers or a fitted pencil dress. Add leather gloves or a silk scarf for an editorial finish. The magic lies in the structure meeting softness — strength with subtlety.</p>
+     <p style="margin-top: 1.5rem; font-style: italic; color: #556B2F; padding-left: 1.5rem; border-left: 3px solid #D35400;">"A well-tailored coat is not just clothing; it's an introduction before you speak."</p>
+    </div>
+    <div class="trend-card"><span class="trend-number">Trend #2</span>
+     <h3>Luxe Leather Layers — The Power of Texture</h3>
+     <p>Leather is not new — but this season, it's evolving into something more sensual and versatile. It's no longer reserved for jackets and boots. The fall 2025–2026 woman wears leather as a statement of confidence — full-length trench coats, wrap skirts, corset belts, and paneled dresses crafted in buttery-soft finishes.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🌿 Modern Leather Mood:</strong></p>
+     <p>Matte textures replace the high-gloss of previous years. The new leather is supple, flexible, and tactile — meant to be worn comfortably from morning meetings to moonlit dinners.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🎨 Trending Shades:</strong></p>
+     <p>Deep olive, cognac brown, muted plum, and burnt caramel are leading the palette. These hues bring warmth to the cool months while still exuding a premium aesthetic.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🧥 Styling Formula:</strong></p>
+     <p>Balance leather's strength with delicate fabrics. Try pairing a leather midi skirt with a sheer turtleneck or an oversized leather shirt with tailored wool trousers. Add minimalist gold jewelry for contrast.</p>
+     <p style="margin-top: 1.5rem; font-style: italic; color: #556B2F; padding-left: 1.5rem; border-left: 3px solid #D35400;">"Leather this season isn't about rebellion — it's about refinement."</p>
+    </div>
+    <div class="trend-card"><span class="trend-number">Trend #3</span>
+     <h3>Sweater Dresses — Where Comfort Meets Couture</h3>
+     <p>Fall 2025–2026 celebrates the art of cozy sophistication, and the sweater dress takes center stage. It's no longer the oversized, chunky knit of the past. The modern version hugs the body with architectural precision while maintaining the soft warmth we love.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🌰 The New Knit Aesthetic:</strong></p>
+     <p>Designers are crafting pieces with ribbed panels, high slits, and sculpted turtlenecks — creating silhouettes that are both sensual and modest. The look is effortless, but every detail is intentional.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">💫 Material Mastery:</strong></p>
+     <p>Merino wool, cashmere blends, and brushed cotton dominate the runway. These fabrics breathe, move, and adapt to your body temperature — ideal for a season of transition.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🕊️ Style Directions:</strong></p>
+     <p>Pair your sweater dress with tall suede boots or layer a long wool coat over it for refined layering. For an evening twist, add statement earrings and a structured clutch.</p>
+     <p style="margin-top: 1.5rem; font-style: italic; color: #556B2F; padding-left: 1.5rem; border-left: 3px solid #D35400;">"True elegance is when comfort looks couture."</p>
+    </div>
+    <div class="trend-card"><span class="trend-number">Trend #4</span>
+     <h3>Neutrals with a Twist — The Rise of Quiet Luxury</h3>
+     <p>This fall, minimalism evolves into what fashion insiders call 'Quiet Luxury' — a palette of soft neutrals enhanced with modern textures and architectural silhouettes. Beige isn't basic anymore; it's breathtaking.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🎨 Color Story:</strong></p>
+     <p>Think bone white, desert taupe, sand gray, and pale caramel. These colors embody tranquility and refinement, creating a polished yet natural look.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">👗 The Silhouette Shift:</strong></p>
+     <p>The trend leans toward clean lines, fine tailoring, and monochromatic layering. Blazers with sharp collars, silk camisoles beneath cashmere cardigans, and high-waisted trousers in muted tones form the foundation of this aesthetic.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">💍 How to Style:</strong></p>
+     <p>Mix matte fabrics with subtle metallic accessories — perhaps a gold chain over a beige coat or a silver belt accenting a cream ensemble. The beauty lies in restraint.</p>
+     <p style="margin-top: 1.5rem; font-style: italic; color: #556B2F; padding-left: 1.5rem; border-left: 3px solid #D35400;">"Quiet luxury isn't about being seen — it's about being remembered."</p>
+    </div>
+    <div class="trend-card"><span class="trend-number">Trend #5</span>
+     <h3>Statement Boots — Confidence from the Ground Up 👢</h3>
+     <p>Footwear this season is a reflection of identity. Statement boots redefine what it means to walk with confidence. From sleek knee-high silhouettes to bold sculptural heels, every pair tells a story of art and attitude.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">✨ Trend Forecast:</strong></p>
+     <p>Expect rich leather finishes, asymmetrical cuts, and experimental heel shapes — boots that double as wearable art. Suede textures in chestnut and stone gray dominate casual looks, while patent black or metallic bronze make evenings unforgettable.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🧩 Styling Guide:</strong></p>
+     <p>Pair tall boots with midi skirts or sweater dresses for an elongated silhouette. For a streetwear twist, wear ankle boots with wide-leg trousers or a structured mini dress.</p>
+     <p style="margin-top: 1.5rem; font-style: italic; color: #556B2F; padding-left: 1.5rem; border-left: 3px solid #D35400;">"The right pair of boots can turn a sidewalk into a runway."</p>
+    </div>
+    <div class="trend-card"><span class="trend-number">Trend #6</span>
+     <h3>Quiet Luxury Accessories — Elegance in Every Detail</h3>
+     <p>Luxury this fall is no longer loud. It's whispered through details that feel personal, timeless, and intentional. Accessories aren't meant to dominate your look — they're crafted to enhance it. The modern woman understands that true sophistication lies not in quantity, but in quality.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">👜 The New Accessory Language:</strong></p>
+     <p>This season celebrates minimalist craftsmanship — soft-grained leather handbags, sculpted earrings, silk scarves, and delicate chain accents. These pieces exude understated charm and can effortlessly transition from a weekday ensemble to an evening affair.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">✨ Key Styles to Watch:</strong></p>
+     <p>Micro-structured handbags in cream or camel<br>
+       Matte gold or brushed silver jewelry that reflects soft autumn light<br>
+       Silk scarves in earthy patterns or monochrome tones<br>
+       Textured belts over coats and dresses for subtle definition</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">💡 Styling Tip:</strong></p>
+     <p>Layering fine jewelry — like stacking thin rings or pairing a minimalist watch with a bangle — adds quiet depth. Combine natural materials (like leather and gold) for balance and warmth.</p>
+     <p style="margin-top: 1.5rem; font-style: italic; color: #556B2F; padding-left: 1.5rem; border-left: 3px solid #D35400;">"True style doesn't need to announce itself — it simply exists, gracefully."</p>
+    </div>
+    <div class="trend-card"><span class="trend-number">Trend #7</span>
+     <h3>The Velvet Revival — Decadence, Reimagined</h3>
+     <p>Velvet has returned, and it's more enchanting than ever. Once reserved for evening glamour, velvet in 2025–2026 embraces a new form: versatile, breathable, and incredibly modern.</p>
+     <p style="margin-top: 1rem;">This season's velvet pieces come with subtle tailoring, sleek lines, and luxurious hues that glow under soft light — perfect for twilight dinners or autumn soirées.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🎨 Trending Shades:</strong></p>
+     <p>Deep emerald, midnight blue, wine red, and royal plum dominate the palette. Each shade feels regal without being overwhelming, evoking both mystery and confidence.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">👗 Where Velvet Appears:</strong></p>
+     <p>Velvet blazers paired with silk camisoles<br>
+       Tailored velvet trousers for a chic work-to-dinner transition<br>
+       Velvet midi dresses with high necklines or subtle draping<br>
+       Footwear &amp; handbags with velvet accents for texture contrast</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">✨ Style Philosophy:</strong></p>
+     <p>Mix velvet with lighter materials like satin or organza to soften the depth of the fabric. Pair a velvet blazer with sleek leather boots for an editorial-inspired look.</p>
+     <p style="margin-top: 1.5rem; font-style: italic; color: #556B2F; padding-left: 1.5rem; border-left: 3px solid #D35400;">"Velvet doesn't just catch the light — it captures emotion."</p>
+    </div>
+    <div class="trend-card"><span class="trend-number">Trend #8</span>
+     <h3>Plaid &amp; Heritage Prints — Tradition Meets Modernity</h3>
+     <p>The charm of plaid returns every fall, but in 2025–2026, it's redefined with architectural tailoring and an avant-garde twist. Heritage prints are reimagined for the modern woman who loves nostalgia yet demands innovation.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🧵 The New Heritage:</strong></p>
+     <p>Oversized plaids, diagonal cuts, and mixed pattern layering create a dynamic, youthful edge. It's the perfect balance of classic sophistication and contemporary individuality.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🎨 Must-Have Pieces:</strong></p>
+     <p>Asymmetrical plaid skirts with structured blazers<br>
+       Oversized plaid coats in muted browns and grays<br>
+       Wool trousers with soft checks and wide-leg cuts<br>
+       Heritage-inspired scarves and handbags</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">💫 How to Style:</strong></p>
+     <p>Anchor your plaid with a solid neutral — think a cream turtleneck or a matte black coat. Too much pattern can overwhelm, but balanced contrast brings elegance.</p>
+     <p style="margin-top: 1.5rem; font-style: italic; color: #556B2F; padding-left: 1.5rem; border-left: 3px solid #D35400;">"Plaid this season is more than print — it's personality woven into fabric."</p>
+    </div>
+    <div class="trend-card"><span class="trend-number">Trend #9</span>
+     <h3>Metallic Hints for Daywear — Subtle Radiance 🌟</h3>
+     <p>This fall, metallics escape the night and enter the daylight. Forget the sequined excess — the new metallics are refined, matte, and effortlessly wearable.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">✨ Modern Metallics:</strong></p>
+     <p>Soft champagne, rose gold, and antique silver tones bring light into autumn wardrobes. From shimmering knitwear to metallic-thread scarves and subtle gold-thread skirts — it's about quiet brilliance.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🩶 Styling Notes:</strong></p>
+     <p>Pair a metallic midi skirt with a soft cashmere sweater for contrast.<br>
+       Mix one metallic element per outfit — shoes, clutch, or top.<br>
+       Keep makeup warm and dewy to match the soft glow of your outfit.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🕊️ Fabric Direction:</strong></p>
+     <p>Designers are incorporating metallic fibers into wool blends and subtle lamé fabrics, creating a fusion of warmth and radiance.</p>
+     <p style="margin-top: 1.5rem; font-style: italic; color: #556B2F; padding-left: 1.5rem; border-left: 3px solid #D35400;">"Modern glamour isn't about shining the brightest — it's about glowing naturally."</p>
+    </div>
+    <div class="trend-card"><span class="trend-number">Trend #10</span>
+     <h3>The Sophisticated Art of Layering — Crafting Depth and Movement</h3>
+     <p>Fall 2025–2026 celebrates layering as an art form. No longer about piling on clothes, layering is now about creating movement, contrast, and story within your outfit.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🧣 The Layering Mindset:</strong></p>
+     <p>Each piece should add value — visually, texturally, or emotionally. Think of layering as composing music: every element contributes to harmony.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🌰 Key Layering Ideas:</strong></p>
+     <p>Silk turtlenecks under sleeveless dresses for a delicate silhouette.<br>
+       Oversized wool coats over fitted knits for contrast.<br>
+       Structured blazers atop flowing maxi skirts for balance.<br>
+       Scarves and belts to define structure within softness.</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #D35400;">🧶 Texture Play:</strong></p>
+     <p>Mixing fabrics is the secret to premium layering. Combine cashmere with leather, satin with wool, or velvet with silk — every pairing should feel intentional, not accidental.</p>
+     <p style="margin-top: 1.5rem; font-style: italic; color: #556B2F; padding-left: 1.5rem; border-left: 3px solid #D35400;">"Layering is not about warmth — it's about dimension."</p>
+    </div><!-- Color Story Section -->
+    <div class="trend-card" style="background: linear-gradient(135deg, rgba(211, 84, 0, 0.1), rgba(255, 255, 255, 0.95)); border-left: 5px solid #D35400;"><span class="trend-number">🌸 Color Story</span>
+     <h3>The Color Story of Fall 2025–2026</h3>
+     <p>This season's palette reads like poetry:</p>
+     <p style="margin-top: 1.5rem;"><strong style="color: #8B4513;">Cinnamon Brown</strong> — earthy, rich, grounding</p>
+     <p style="margin-top: 0.5rem;"><strong style="color: #8B4789;">Plum Velvet</strong> — romantic and indulgent</p>
+     <p style="margin-top: 0.5rem;"><strong style="color: #8B8680;">Smoky Taupe</strong> — minimal yet regal</p>
+     <p style="margin-top: 0.5rem;"><strong style="color: #228B22;">Forest Green</strong> — calm and confident</p>
+     <p style="margin-top: 0.5rem;"><strong style="color: #D4AF37;">Champagne Gold</strong> — radiant but restrained</p>
+     <p style="margin-top: 1.5rem;">Each tone is designed to evoke emotion, not just admiration. It's a palette for women who understand that fashion is both personal and powerful.</p>
+    </div><!-- Final Word Section -->
+    <div class="trend-card" style="background: linear-gradient(135deg, rgba(85, 107, 47, 0.1), rgba(255, 255, 255, 0.95)); border-left: 5px solid #556B2F;"><span class="trend-number">🕊️ Final Word</span>
+     <h3>The Essence of Fall 2025–2026</h3>
+     <p>This fall isn't about reinvention — it's about refinement. It's about returning to fashion that feels real, tactile, and timeless. The trends of 2025–2026 celebrate individuality:</p>
+     <p style="margin-top: 1.5rem;">Power dressing with emotion.<br>
+       Comfort with couture precision.<br>
+       Luxury that whispers, not shouts.</p>
+     <p style="margin-top: 1.5rem;">Every fabric, color, and silhouette invites you to express your story — not through extravagance, but through elegance.</p>
+     <p style="margin-top: 1.5rem;">Because when fashion evolves, it doesn't discard the past — it reimagines it for the woman who knows exactly who she is.</p>
+     <p style="margin-top: 2rem; font-style: italic; color: #D35400; padding-left: 1.5rem; border-left: 3px solid #556B2F; font-size: 1.2rem;">"Fall fashion this year isn't about changing who you are — it's about becoming more of yourself, beautifully."</p>
+    </div><!-- Author's Note Section -->
+    <div class="trend-card" style="background: linear-gradient(135deg, rgba(245, 222, 179, 0.4), rgba(255, 255, 255, 0.95)); border: 2px solid #D35400;"><span class="trend-number">🌹 Author's Note</span>
+     <h3 style="color: #D35400;">A Personal Reflection</h3>
+     <p style="font-style: italic; line-height: 2;">Fall 2025–2026 is a masterpiece of balance — between strength and softness, tradition and innovation, comfort and confidence. Whether you're walking through golden streets or sitting by candlelight, let your wardrobe reflect not just the season, but your essence.</p>
+    </div>
+   </section><!-- Sliding Window Gallery -->
+   <section class="sliding-gallery">
+    <h2 class="gallery-title">Explore Blog Sections</h2>
+    <div class="windows-container" id="windows-container"><a href="https://tazimamin.github.io/6-Fall-Outfit-Ideas-for-November/" target="_blank" rel="noopener noreferrer" class="window" style="background: linear-gradient(135deg, rgba(211, 84, 0, 0.6), rgba(245, 222, 179, 0.4)), url('https://i.pinimg.com/736x/7c/95/40/7c95403c0e564c8c9acace12e004ba05.jpg'); background-size: cover; background-position: center; text-decoration: none;">
+      <div class="window-content">
+       <h3>Top 6 Fall Outfit Ideas for November 2025</h3>
+       <p>Discover trending fall looks</p>
+      </div></a> <a href="https://tazimamin.github.io/Top-6-Fall-Boots-and-Sandal-Trends/" target="_blank" rel="noopener noreferrer" class="window" style="background: linear-gradient(135deg, rgba(85, 107, 47, 0.6), rgba(211, 84, 0, 0.4)), url('https://i.pinimg.com/736x/83/58/c7/8358c764982aba414695e7b9e473e2e0.jpg'); background-size: cover; background-position: center; text-decoration: none;">
+      <div class="window-content">
+       <h3>Top 6 Fall Boots &amp; Sandal Trends for November 2025</h3>
+       <p>Step into style</p>
+      </div></a> <a href="https://tazimamin.github.io/TrendingNailIdeas/" target="_blank" rel="noopener noreferrer" class="window" style="background: linear-gradient(135deg, rgba(44, 62, 80, 0.6), rgba(245, 222, 179, 0.4)), url('https://i.pinimg.com/736x/d1/36/f4/d136f42daaad51c5c90b04510c745b29.jpg'); background-size: cover; background-position: center; text-decoration: none;">
+      <div class="window-content">
+       <h3>Winter Nail Trends 2025</h3>
+       <p>Cozy, chic &amp; Pinterest-perfect</p>
+      </div></a> <a href="https://tazimamin.github.io/-Fall-Outfit-Trends/" target="_blank" rel="noopener noreferrer" class="window" style="background: linear-gradient(135deg, rgba(245, 222, 179, 0.6), rgba(85, 107, 47, 0.4)), url('https://i.pinimg.com/736x/66/c0/93/66c09326c8e2bd47788cb39fb8f4be9d.jpg'); background-size: cover; background-position: center; text-decoration: none;">
+      <div class="window-content">
+       <h3>Top 10 Fall Outfit Trends for Women in 2025</h3>
+       <p>Complete style guide</p>
+      </div></a> <a href="https://tazimamin.github.io/NovelAndNotebookHub/" target="_blank" rel="noopener noreferrer" class="window" style="background: linear-gradient(135deg, rgba(211, 84, 0, 0.6), rgba(44, 62, 80, 0.4)), url('https://i.pinimg.com/736x/85/bd/51/85bd516d56fd5f5f1f7f6bb305c3cec7.jpg'); background-size: cover; background-position: center; text-decoration: none;">
+      <div class="window-content">
+       <h3>NovelAndNotebookHub</h3>
+       <p>Your lifestyle destination</p>
+      </div></a>
+    </div>
+   </section>
+  </div><!-- Products Page -->
+  <div id="products-page" class="page">
+   <section class="hero" style="height: 50%;">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+     <h1>Curated Affiliate Picks</h1>
+     <p>Premium essentials for the modern woman</p>
+    </div>
+   </section>
+   <section class="products-grid">
+    <div class="product-card">
+     <div class="product-image" style="background: url('https://m.media-amazon.com/images/I/61KfkFlsYsL._AC_SY879_.jpg') center/contain no-repeat;"></div>
+     <h3>Silk Midi Dress</h3><a href="https://amzn.to/49bZdGw" target="_blank" rel="noopener noreferrer" style="text-decoration: none;"> <button class="product-btn">Shop Now</button> </a>
+    </div>
+    <div class="product-card">
+     <div class="product-image" style="background: url('https://m.media-amazon.com/images/I/71UszyYs+rL._AC_SY879_.jpg') center/contain no-repeat;"></div>
+     <h3>Cashmere Cardigan</h3><a href="https://amzn.to/4oynueB" target="_blank" rel="noopener noreferrer" style="text-decoration: none;"> <button class="product-btn">Shop Now</button> </a>
+    </div>
+    <div class="product-card">
+     <div class="product-image" style="background: url('https://m.media-amazon.com/images/I/611JyPEFDEL._AC_SY695_.jpg') center/contain no-repeat;"></div>
+     <h3>Leather Knee Boots</h3><a href="https://amzn.to/4p5rlQa" target="_blank" rel="noopener noreferrer" style="text-decoration: none;"> <button class="product-btn">Shop Now</button> </a>
+    </div>
+    <div class="product-card">
+     <div class="product-image" style="background: url('https://m.media-amazon.com/images/I/81LZwzWDMmL._AC_SX679_.jpg') center/contain no-repeat;"></div>
+     <h3>Structured Tote Bag</h3><a href="https://amzn.to/3JQPM4U" target="_blank" rel="noopener noreferrer" style="text-decoration: none;"> <button class="product-btn">Shop Now</button> </a>
+    </div>
+    <div class="product-card">
+     <div class="product-image" style="background: url('https://m.media-amazon.com/images/I/81lDj4IShFL._AC_SX679_.jpg') center/contain no-repeat;"></div>
+     <h3>Wool Blend Scarf</h3><a href="https://amzn.to/4hW33WH" target="_blank" rel="noopener noreferrer" style="text-decoration: none;"> <button class="product-btn">Shop Now</button> </a>
+    </div>
+    <div class="product-card">
+     <div class="product-image" style="background: url('https://m.media-amazon.com/images/I/6166mhIZHXL._AC_SY675_.jpg') center/contain no-repeat;"></div>
+     <h3>Gold Statement Ring</h3><a href="https://amzn.to/3LVs206" target="_blank" rel="noopener noreferrer" style="text-decoration: none;"> <button class="product-btn">Shop Now</button> </a>
+    </div>
+    <div class="product-card">
+     <div class="product-image" style="background: url('https://m.media-amazon.com/images/I/61aPF1cG+BL._AC_SX679_.jpg') center/contain no-repeat;"></div>
+     <h3>Designer Sunglasses</h3><a href="https://amzn.to/47YJmcb" target="_blank" rel="noopener noreferrer" style="text-decoration: none;"> <button class="product-btn">Shop Now</button> </a>
+    </div>
+    <div class="product-card">
+     <div class="product-image" style="background: url('https://m.media-amazon.com/images/I/81JlZpq16QL._AC_SX679_.jpg') center/contain no-repeat;"></div>
+     <h3>Minimalist Watch</h3><a href="https://amzn.to/4hSU1JS" target="_blank" rel="noopener noreferrer" style="text-decoration: none;"> <button class="product-btn">Shop Now</button> </a>
+    </div>
+   </section><!-- Sliding Window Gallery (Products Page) -->
+   <section class="sliding-gallery">
+    <h2 class="gallery-title">Explore Blog Sections</h2>
+    <div class="windows-container" id="windows-container-products"><a href="https://tazimamin.github.io/6-Fall-Outfit-Ideas-for-November/" target="_blank" rel="noopener noreferrer" class="window" style="background: linear-gradient(135deg, rgba(211, 84, 0, 0.6), rgba(245, 222, 179, 0.4)), url('https://i.pinimg.com/736x/7c/95/40/7c95403c0e564c8c9acace12e004ba05.jpg'); background-size: cover; background-position: center; text-decoration: none;">
+      <div class="window-content">
+       <h3>Top 6 Fall Outfit Ideas for November 2025</h3>
+       <p>Discover trending fall looks</p>
+      </div></a> <a href="https://tazimamin.github.io/Top-6-Fall-Boots-and-Sandal-Trends/" target="_blank" rel="noopener noreferrer" class="window" style="background: linear-gradient(135deg, rgba(85, 107, 47, 0.6), rgba(211, 84, 0, 0.4)), url('https://i.pinimg.com/736x/83/58/c7/8358c764982aba414695e7b9e473e2e0.jpg'); background-size: cover; background-position: center; text-decoration: none;">
+      <div class="window-content">
+       <h3>Top 6 Fall Boots &amp; Sandal Trends for November 2025</h3>
+       <p>Step into style</p>
+      </div></a> <a href="https://tazimamin.github.io/TrendingNailIdeas/" target="_blank" rel="noopener noreferrer" class="window" style="background: linear-gradient(135deg, rgba(44, 62, 80, 0.6), rgba(245, 222, 179, 0.4)), url('https://i.pinimg.com/736x/d1/36/f4/d136f42daaad51c5c90b04510c745b29.jpg'); background-size: cover; background-position: center; text-decoration: none;">
+      <div class="window-content">
+       <h3>Winter Nail Trends 2025: Cozy, Chic &amp; Pinterest-Perfect October Nail Ideas</h3>
+       <p>Nail inspiration</p>
+      </div></a> <a href="https://tazimamin.github.io/-Fall-Outfit-Trends/" target="_blank" rel="noopener noreferrer" class="window" style="background: linear-gradient(135deg, rgba(245, 222, 179, 0.6), rgba(85, 107, 47, 0.4)), url('https://i.pinimg.com/736x/66/c0/93/66c09326c8e2bd47788cb39fb8f4be9d.jpg'); background-size: cover; background-position: center; text-decoration: none;">
+      <div class="window-content">
+       <h3>Top 10 Fall Outfit Trends for Women in 2025</h3>
+       <p>Complete style guide</p>
+      </div></a> <a href="https://tazimamin.github.io/NovelAndNotebookHub/" target="_blank" rel="noopener noreferrer" class="window" style="background: linear-gradient(135deg, rgba(211, 84, 0, 0.6), rgba(44, 62, 80, 0.4)), url('https://i.pinimg.com/736x/85/bd/51/85bd516d56fd5f5f1f7f6bb305c3cec7.jpg'); background-size: cover; background-position: center; text-decoration: none;">
+      <div class="window-content">
+       <h3>NovelAndNotebookHub</h3>
+       <p>Your lifestyle destination</p>
+      </div></a>
+    </div>
+   </section>
+  </div><!-- Footer -->
+  <footer>
+   <div class="footer-content">
+    <h2 class="footer-brand" id="footer-brand">NovelAndNotebookHub</h2>
+    <p class="footer-tagline" id="footer-tagline">Curated lifestyle and essentials hub</p>
+    <p class="footer-mission" id="footer-mission">Curating timeless style and essentials for modern women of elegance.</p><!-- Glassmorphic Footer Buttons -->
+    <div class="footer-buttons"><button class="glass-btn" data-modal="privacy">Privacy Policy</button> <button class="glass-btn" data-modal="terms">Terms of Service</button> <button class="glass-btn" data-modal="contact">Contact</button> <button class="glass-btn" data-modal="about">About</button> <button class="glass-btn" data-modal="editorial">Editorial Guidelines</button> <button class="glass-btn" data-modal="affiliate">Affiliate Disclosure</button>
+    </div>
+    <div class="social-links"><a href="https://in.pinterest.com/NovelAndNotebookHub/" target="_blank" rel="noopener noreferrer" title="Pinterest">📌</a>
+    </div>
+    <p class="footer-copyright">© 2025 NovelAndNotebookHub. All rights reserved.</p>
+   </div>
+  </footer><!-- Modal Overlays -->
+  <div class="modal-overlay" id="modal-privacy">
+   <div class="modal-content"><button class="modal-close" data-close="privacy">×</button>
+    <h2>Privacy Policy</h2>
+    <p>At NovelAndNotebookHub, we collect limited data including email addresses and browsing behavior to enhance your experience on our platform.</p>
+    <p>Your personal information is never sold to third parties. We use cookies to improve site functionality and track affiliate conversions.</p>
+    <p>Affiliate tracking is used solely to monitor product recommendations and does not compromise your privacy.</p>
+    <p>By using our site, you consent to our use of cookies and data collection practices as outlined in this policy.</p>
+   </div>
+  </div>
+  <div class="modal-overlay" id="modal-terms">
+   <div class="modal-content"><button class="modal-close" data-close="terms">×</button>
+    <h2>Terms of Service</h2>
+    <p>All content on NovelAndNotebookHub is provided for informational purposes and affiliate marketing use.</p>
+    <p>We partner primarily with Amazon and other reputable retailers. Product recommendations are made independently.</p>
+    <p>NovelAndNotebookHub is not responsible for the quality, delivery, or customer service of third-party products.</p>
+    <p>All site assets, including text, images, and design elements, are the intellectual property of NovelAndNotebookHub.</p>
+    <p>By accessing this site, you agree to these terms and conditions.</p>
+   </div>
+  </div>
+  <div class="modal-overlay" id="modal-contact">
+   <div class="modal-content"><button class="modal-close" data-close="contact">×</button>
+    <h2>Contact Us</h2>
+    <p><strong>Email:</strong> <a href="mailto:mdtazimamin786@gmail.com">mdtazimamin786@gmail.com</a></p>
+    <p><strong>Business Hours:</strong> Monday – Friday, 10:00 AM – 6:00 PM IST</p>
+    <p><strong>Social Media:</strong> Follow us @novelandnotebookhub on Pinterest for daily inspiration and curated finds.</p>
+    <p>We aim to respond to all inquiries within 24-48 hours during business days.</p>
+   </div>
+  </div>
+  <div class="modal-overlay" id="modal-about">
+   <div class="modal-content"><button class="modal-close" data-close="about">×</button>
+    <h2>About NovelAndNotebookHub</h2>
+    <p>NovelAndNotebookHub is a creative hub where the love of reading meets thoughtful design.</p>
+    <p>We curate premium notebooks, stationery, literary finds, and lifestyle essentials that balance style, function, and creativity.</p>
+    <p>Our mission is to inspire a life of elegance and intentionality through carefully selected products and editorial content.</p>
+    <p>Every recommendation reflects our commitment to quality, aesthetics, and the joy of discovery.</p>
+   </div>
+  </div>
+  <div class="modal-overlay" id="modal-editorial">
+   <div class="modal-content"><button class="modal-close" data-close="editorial">×</button>
+    <h2>Editorial Guidelines</h2>
+    <p>All product reviews and recommendations on NovelAndNotebookHub are honest and independent.</p>
+    <p>We do not accept payment for positive reviews or promotional content.</p>
+    <p>Our focus is on reliability, usefulness, and aesthetic value when selecting products to feature.</p>
+    <p>We maintain editorial integrity by thoroughly researching and testing products before recommendation.</p>
+    <p>Transparency and trust are the foundation of our relationship with our readers.</p>
+   </div>
+  </div>
+  <div class="modal-overlay" id="modal-affiliate">
+   <div class="modal-content"><button class="modal-close" data-close="affiliate">×</button>
+    <h2>Affiliate Disclosure</h2>
+    <p>NovelAndNotebookHub is a participant in the Amazon Associates Program and other affiliate marketing programs.</p>
+    <p>This means we may earn a small commission when you purchase products through our links, at no extra cost to you.</p>
+    <p>These commissions help us maintain and improve our content while keeping it free for our readers.</p>
+    <p>All products are carefully chosen based on quality and relevance, not commission rates.</p>
+    <p>Your support through affiliate purchases allows us to continue curating exceptional content.</p>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      hero_title: "Top 10 Fall Fashion Trends 2025–2026 Every Woman of Style Needs to Know",
+      hero_subtitle: "Curated with elegance for the modern woman",
+      brand_name: "NovelAndNotebookHub",
+      brand_tagline: "Curated lifestyle and essentials hub",
+      mission_statement: "Curating timeless style and essentials for modern women of elegance.",
+      primary_color: "#D35400",
+      secondary_color: "#F5DEB3",
+      text_color: "#2C3E50",
+      accent_color: "#556B2F",
+      background_color: "#FAFAFA",
+      font_family: "Montserrat",
+      font_size: 16
+    };
+
+    let config = { ...defaultConfig };
+
+    // Navigation
+    const navHome = document.getElementById('nav-home');
+    const navProducts = document.getElementById('nav-products');
+    const navLogo = document.getElementById('nav-logo');
+    const homePage = document.getElementById('home-page');
+    const productsPage = document.getElementById('products-page');
+
+    function showPage(page) {
+      homePage.classList.remove('active');
+      productsPage.classList.remove('active');
+      page.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    navHome.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(homePage);
+    });
+
+    navProducts.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(productsPage);
+    });
+
+    navLogo.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(homePage);
+    });
+
+    // Modal Functionality
+    const modalButtons = document.querySelectorAll('.glass-btn');
+    const modalCloseButtons = document.querySelectorAll('.modal-close');
+    const modalOverlays = document.querySelectorAll('.modal-overlay');
+
+    modalButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const modalId = button.getAttribute('data-modal');
+        const modal = document.getElementById(`modal-${modalId}`);
+        if (modal) {
+          modal.classList.add('active');
+        }
+      });
+    });
+
+    modalCloseButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const modalId = button.getAttribute('data-close');
+        const modal = document.getElementById(`modal-${modalId}`);
+        if (modal) {
+          modal.classList.remove('active');
+        }
+      });
+    });
+
+    modalOverlays.forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          overlay.classList.remove('active');
+        }
+      });
+    });
+
+    // Sliding Window Gallery - Desktop (Hover)
+    const windowsContainer = document.getElementById('windows-container');
+    const windowsContainerProducts = document.getElementById('windows-container-products');
+    
+    function setupWindowGallery(container) {
+      const windows = container.querySelectorAll('.window');
+      
+      // Desktop hover
+      windows.forEach(window => {
+        window.addEventListener('mouseenter', () => {
+          windows.forEach(w => w.classList.remove('active'));
+          window.classList.add('active');
+        });
+      });
+
+      container.addEventListener('mouseleave', () => {
+        windows.forEach(w => w.classList.remove('active'));
+      });
+
+      // Mobile touch
+      windows.forEach(window => {
+        window.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+          windows.forEach(w => w.classList.remove('active'));
+          window.classList.add('active');
+        });
+      });
+    }
+
+    setupWindowGallery(windowsContainer);
+    setupWindowGallery(windowsContainerProducts);
+
+    // Element SDK Implementation
+    async function onConfigChange(newConfig) {
+      config = { ...config, ...newConfig };
+      
+      // Update text content
+      const heroTitle = document.getElementById('hero-title');
+      const heroSubtitle = document.getElementById('hero-subtitle');
+      const navLogoEl = document.getElementById('nav-logo');
+      const footerBrand = document.getElementById('footer-brand');
+      const footerTagline = document.getElementById('footer-tagline');
+      const footerMission = document.getElementById('footer-mission');
+
+      if (heroTitle) heroTitle.textContent = config.hero_title || defaultConfig.hero_title;
+      if (heroSubtitle) heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      if (navLogoEl) navLogoEl.textContent = config.brand_name || defaultConfig.brand_name;
+      if (footerBrand) footerBrand.textContent = config.brand_name || defaultConfig.brand_name;
+      if (footerTagline) footerTagline.textContent = config.brand_tagline || defaultConfig.brand_tagline;
+      if (footerMission) footerMission.textContent = config.mission_statement || defaultConfig.mission_statement;
+
+      // Update colors
+      const primaryColor = config.primary_color || defaultConfig.primary_color;
+      const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+
+      document.body.style.background = backgroundColor;
+      document.body.style.color = textColor;
+
+      // Update logo colors
+      document.querySelectorAll('.logo, .footer-brand').forEach(el => {
+        el.style.color = primaryColor;
+      });
+
+      // Update hero background
+      document.querySelectorAll('.hero-bg').forEach(el => {
+        el.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${accentColor} 100%)`;
+      });
+
+      // Update buttons
+      document.querySelectorAll('.product-btn').forEach(btn => {
+        btn.style.background = `linear-gradient(135deg, ${primaryColor}, ${accentColor})`;
+      });
+
+      // Update trend numbers
+      document.querySelectorAll('.trend-number').forEach(el => {
+        el.style.background = `linear-gradient(135deg, ${primaryColor}, ${accentColor})`;
+      });
+
+      // Update section titles
+      document.querySelectorAll('.section-title, .gallery-title').forEach(el => {
+        el.style.color = primaryColor;
+      });
+
+      // Update font
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseFontStack = 'Arial, sans-serif';
+      
+      document.querySelectorAll('h1, h2, h3, .logo, .nav-links a, .product-btn, .trend-number').forEach(el => {
+        el.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      });
+
+      // Update font size
+      const baseSize = config.font_size || defaultConfig.font_size;
+      document.body.style.fontSize = `${baseSize}px`;
+      
+      document.querySelectorAll('h1').forEach(el => {
+        el.style.fontSize = `${baseSize * 2.2}px`;
+      });
+      
+      document.querySelectorAll('h2').forEach(el => {
+        el.style.fontSize = `${baseSize * 1.6}px`;
+      });
+      
+      document.querySelectorAll('h3').forEach(el => {
+        el.style.fontSize = `${baseSize * 1.25}px`;
+      });
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.secondary_color || defaultConfig.secondary_color,
+            set: (value) => {
+              config.secondary_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ secondary_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => {
+              config.primary_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ primary_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              config.accent_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["hero_title", config.hero_title || defaultConfig.hero_title],
+        ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+        ["brand_name", config.brand_name || defaultConfig.brand_name],
+        ["brand_tagline", config.brand_tagline || defaultConfig.brand_tagline],
+        ["mission_statement", config.mission_statement || defaultConfig.mission_statement]
+      ]);
+    }
+
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99dfa047b5a5ff9f',t:'MTc2MzA1MTEzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
